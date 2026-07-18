@@ -17,7 +17,7 @@ program NuimeCLI : IshikoTerminal, IshikoColor, IshikoConfiguration, IshikoError
     {
         cxx-compiler-options = "-std=c++14";
         outputdir = ../../../bin;
-        libs += IshikoTerminal IshikoColor IshikoConfiguration IshikoErrors;
+        libs += IshikoTerminal IshikoColor IshikoConfiguration IshikoText IshikoErrors;
     }
 
     if ($(toolset) != gnu)

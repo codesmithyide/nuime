@@ -37,6 +37,7 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
+#      ISHIKO_CPP_COLOR_ROOT          Path to the Ishiko/C++ Color installation
 #      ISHIKO_CPP_BASEPLATFORM_ROOT   Path to the Ishiko/C++ BasePlatform installation
 #      ISHIKO_CPP_ERRORS_ROOT         Path to the Ishiko/C++ Errors installation
 #      ISHIKO_CPP_FMT_ROOT            Path to the fmt installation
@@ -44,6 +45,8 @@ endif
 #      ISHIKO_CPP_BOOST_ROOT          Path to the Boost installation
 #      ISHIKO_CPP_TEXT_ROOT           Path to the Ishiko/C++ Text installation
 #      ISHIKO_CPP_CONFIGURATION_ROOT  Path to the Ishiko/C++ Configuration installation
+#      ISHIKO_CPP_TYPES_ROOT          Path to the Ishiko/C++ Types installation
+#      ISHIKO_CPP_TERMINAL_ROOT       Path to the Ishiko/C++ Terminal installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -64,6 +67,8 @@ endif
 # Configurable settings:
 # 
 
+# Path to the Ishiko/C++ Color installation
+ISHIKO_CPP_COLOR_ROOT ?= $(ISHIKO_CPP_ROOT)/color
 # Path to the Ishiko/C++ BasePlatform installation
 ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP_ROOT)/base-platform
 # Path to the Ishiko/C++ Errors installation
@@ -78,6 +83,10 @@ ISHIKO_CPP_BOOST_ROOT ?= $(BOOST_ROOT)
 ISHIKO_CPP_TEXT_ROOT ?= $(ISHIKO_CPP_ROOT)/text
 # Path to the Ishiko/C++ Configuration installation
 ISHIKO_CPP_CONFIGURATION_ROOT ?= $(ISHIKO_CPP_ROOT)/configuration
+# Path to the Ishiko/C++ Types installation
+ISHIKO_CPP_TYPES_ROOT ?= $(ISHIKO_CPP_ROOT)/types
+# Path to the Ishiko/C++ Terminal installation
+ISHIKO_CPP_TERMINAL_ROOT ?= $(ISHIKO_CPP_ROOT)/terminal
 
 # ------------
 
@@ -85,13 +94,13 @@ all: ../../../bin/NuimeCLI
 
 ../../../bin/NuimeCLI: $(_builddir)NuimeCLI_CommandLineSpecification.o $(_builddir)NuimeCLI_main.o
 	@mkdir -p $(dir $@)
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)NuimeCLI_CommandLineSpecification.o $(_builddir)NuimeCLI_main.o -L$(ISHIKO_CPP_BASEPLATFORM_ROOT)/lib -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_FMT_ROOT)/lib -L$(ISHIKO_CPP_MEMORY_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/lib -L$(ISHIKO_CPP_CONFIGURATION_ROOT)/lib -lIshikoConfiguration -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)NuimeCLI_CommandLineSpecification.o $(_builddir)NuimeCLI_main.o -L$(ISHIKO_CPP_COLOR_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_TYPES_ROOT)/lib -L$(ISHIKO_CPP_TERMINAL_ROOT)/lib -L$(ISHIKO_CPP_BASEPLATFORM_ROOT)/lib -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_FMT_ROOT)/lib -L$(ISHIKO_CPP_MEMORY_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/lib -L$(ISHIKO_CPP_CONFIGURATION_ROOT)/lib -lIshikoConfiguration -pthread
 
 $(_builddir)NuimeCLI_CommandLineSpecification.o: ../../src/CommandLineSpecification.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_MEMORY_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_CONFIGURATION_ROOT)/include -std=c++14 ../../src/CommandLineSpecification.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_COLOR_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_TERMINAL_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_MEMORY_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_CONFIGURATION_ROOT)/include -std=c++14 ../../src/CommandLineSpecification.cpp
 
 $(_builddir)NuimeCLI_main.o: ../../src/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_MEMORY_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_CONFIGURATION_ROOT)/include -std=c++14 ../../src/main.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_COLOR_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_TERMINAL_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_MEMORY_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_CONFIGURATION_ROOT)/include -std=c++14 ../../src/main.cpp
 
 clean:
 	rm -f $(_builddir)*.o

@@ -1,5 +1,8 @@
 ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/color/include/Ishiko/Color.bkl;
 import $(ishikopath)/configuration/include/Ishiko/Configuration.bkl;
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/terminal/include/Ishiko/Terminal.bkl;
 
 toolsets = gnu vs2022 vs2019 vs2017;
 
@@ -8,7 +11,7 @@ vs2022.solutionfile = ../vc17/NuimeCLI.sln;
 vs2019.solutionfile = ../vc16/NuimeCLI.sln;
 vs2017.solutionfile = ../vc15/NuimeCLI.sln;
 
-program NuimeCLI : IshikoConfiguration
+program NuimeCLI : IshikoTerminal, IshikoColor, IshikoConfiguration, IshikoErrors
 {
     if ($(toolset) == gnu)
     {

@@ -14,7 +14,7 @@ jobs:
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
   build:
     docker:
-      - image: codesmithy/gcc-build-prerequisites:0.16.0
+      - image: codesmithy/gcc-build-prerequisites:0.17.0
     steps:
       - run:
           name: "Set CODESMITHYIDE_ROOT environment variables"

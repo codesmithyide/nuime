@@ -21,7 +21,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{72534B90-49B4-5B96-950C-CBAE04D56D67}</ProjectGuid>
+    <ProjectGuid>{177BDE7B-4C2F-508D-95B1-BC96B702FB64}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>nuime</RootNamespace>
     <ProjectName>nuime</ProjectName>

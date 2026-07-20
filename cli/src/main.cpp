@@ -20,6 +20,21 @@ int main(int argc, char* argv[])
         Ishiko::Error error;
         error.extensions().install<Ishiko::InfoErrorExtension>();
 
+        const Ishiko::Configuration& command_configuration = configuration.value("command").asConfiguration();
+        const std::string& command_name = command_configuration.value("name").asString();
+        if (command_name == "build")
+        {
+            const std::string& build_file = command_configuration.value("build-file").asString();
+
+            // TODO
+        }
+        else if (command_name == "export")
+        {
+            const std::string& build_file = command_configuration.value("build-file").asString();
+
+            // TODO
+        }
+
         if (error)
         {
             std::stringstream message;

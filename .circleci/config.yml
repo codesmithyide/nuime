@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   bootstrap-build:
     docker:
-      - image: codesmithy/gcc-bootstrap-build-prerequisites:0.12.0
+      - image: codesmithy/gcc-bootstrap-build-prerequisites:0.13.0
     steps:
       - run: 
           name: "Set CODESMITHYIDE_ROOT environment variables"
@@ -11,16 +11,22 @@ jobs:
           path: /workspace/projects/codesmithyide/nuime
       - run:
           name: Build
+          command: cd /workspace/projects/codesmithyide/nuime/library/build-files/gnumake && make
+      - run:
+          name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
   build:
     docker:
-      - image: codesmithy/gcc-build-prerequisites:0.16.0
+      - image: codesmithy/gcc-build-prerequisites:0.17.0
     steps:
       - run:
           name: "Set CODESMITHYIDE_ROOT environment variables"
           command: echo 'export CODESMITHYIDE_ROOT="/workspace/projects//codesmithyide"' >> $BASH_ENV
       - checkout:
           path: /workspace/projects/codesmithyide/nuime
+      - run:
+          name: Build
+          command: cd /workspace/projects/codesmithyide/nuime/library/build-files/gnumake && make
       - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make

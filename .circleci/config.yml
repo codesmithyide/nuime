@@ -15,6 +15,11 @@ jobs:
       - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
+      - run:
+          name: "Test"
+          command: cd /workspace/projects/codesmithyide/nuime/cli/tests/build-files/gnumake && make && ./nuime_cli_tests
+      - store_artifacts:
+          path: /workspace/projects/codesmithyide/nuime/bin/nuime
   build:
     docker:
       - image: codesmithy/gcc-build-prerequisites:0.17.0
@@ -30,6 +35,11 @@ jobs:
       - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
+      - run:
+          name: "Test"
+          command: cd /workspace/projects/codesmithyide/nuime/cli/tests/build-files/gnumake && make && ./nuime_cli_tests
+      - store_artifacts:
+          path: /workspace/projects/codesmithyide/nuime/bin/nuime
 workflows:
   version: 2
   continuous_build:

@@ -21,10 +21,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{683C94DF-D2CA-52E7-A423-6F66346F7900}</ProjectGuid>
+    <ProjectGuid>{FBC0E0A4-0DE3-5E7E-8A9B-1DE63439C527}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Nuime</RootNamespace>
-    <ProjectName>Nuime</ProjectName>
+    <RootNamespace>nuime</RootNamespace>
+    <ProjectName>nuime</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -68,11 +68,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>Nuime-d</TargetName>
+    <TargetName>nuime-d</TargetName>
     <OutDir>..\bakefile\..\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>Nuime-d</TargetName>
+    <TargetName>nuime-d</TargetName>
     <OutDir>..\bakefile\..\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -154,7 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Engine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\..\include\Nuime.hpp" />
+    <ClInclude Include="..\..\..\include\Nuime\Engine.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

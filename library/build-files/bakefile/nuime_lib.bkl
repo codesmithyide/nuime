@@ -1,11 +1,11 @@
 toolsets = gnu vs2022 vs2019 vs2017;
 
 gnu.makefile = ../gnumake/GNUmakefile;
-vs2022.solutionfile = ../vc17/Nuime.sln;
-vs2019.solutionfile = ../vc16/Nuime.sln;
-vs2017.solutionfile = ../vc15/Nuime.sln;
+vs2022.solutionfile = ../vc17/nuime_lib.sln;
+vs2019.solutionfile = ../vc16/nuime_lib.sln;
+vs2017.solutionfile = ../vc15/nuime_lib.sln;
 
-library Nuime 
+library nuime 
 {
     includedirs += ../../../include/Nuime;
 
@@ -24,11 +24,17 @@ library Nuime
 
     if ($(config) == Debug)
     {
-        basename = Nuime-d;
+        basename = nuime-d;
     }
 
     headers
     {
         ../../../include/Nuime.hpp
+        ../../../include/Nuime/Engine.hpp
+    }
+
+    sources
+    {
+        ../../src/Engine.cpp
     }
 }

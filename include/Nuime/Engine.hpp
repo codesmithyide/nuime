@@ -4,4 +4,11 @@
 #ifndef GUARD_NUIME_ENGINE_HPP
 #define GUARD_NUIME_ENGINE_HPP
 
+namespace Nuime
+{
+    class Engine
+    {
+    };
+}
+
 #endif

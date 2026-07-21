@@ -30,5 +30,11 @@ library nuime
     headers
     {
         ../../../include/Nuime.hpp
+        ../../../include/Nuime/Engine.hpp
+    }
+
+    sources
+    {
+        ../../src/Engine.cpp
     }
 }

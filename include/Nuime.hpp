@@ -4,4 +4,6 @@
 #ifndef GUARD_NUIME_HPP
 #define GUARD_NUIME_HPP
 
+#include "Nuime/Engine.hpp"
+
 #endif

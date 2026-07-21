@@ -45,13 +45,30 @@ _false :=
 _not    = $(if $(1),$(_false),$(_true_))
 _equal  = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 
-all: ../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),Nuime-d,Nuime).a
 
-../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),Nuime-d,Nuime).a:
-	$(AR) rc $@ 
+# The directory for the build files, may be overridden on make command line.
+builddir = .
+
+ifneq ($(builddir),.)
+_builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(builddir)/../gnumake/
+_builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
+$(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
+endif
+all: ../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),nuime-d,nuime).a
+
+../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),nuime-d,nuime).a: $(_builddir)nuime_Engine.o
+	$(AR) rc $@ $(_builddir)nuime_Engine.o
 	$(RANLIB) $@
 
+$(_builddir)nuime_Engine.o: ../../src/Engine.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../../include/Nuime -std=c++14 ../../src/Engine.cpp
+
 clean:
-	rm -f ../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),Nuime-d,Nuime).a
+	rm -f $(_builddir)*.o
+	rm -f $(_builddir)*.d
+	rm -f ../bakefile/../../../lib/lib$(if $(call _equal,$(config),Debug),nuime-d,nuime).a
 
 .PHONY: all clean
+
+# Dependencies tracking:
+-include $(_builddir)*.d

@@ -13,6 +13,9 @@ jobs:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/library/build-files/gnumake && make
       - run:
+          name: "Test"
+          command: cd /workspace/projects/codesmithyide/nuime/library/tests/build-files/gnumake && make && ./nuime_lib_tests
+      - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
       - run:
@@ -32,6 +35,9 @@ jobs:
       - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/library/build-files/gnumake && make
+      - run:
+          name: "Test"
+          command: cd /workspace/projects/codesmithyide/nuime/library/tests/build-files/gnumake && make && ./nuime_lib_tests
       - run:
           name: Build
           command: cd /workspace/projects/codesmithyide/nuime/cli/build-files/gnumake && make
